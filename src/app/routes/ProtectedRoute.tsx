@@ -30,7 +30,7 @@ export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
   }
 
   if (!isAuthenticated) {
-    return <Navigate to="/login" state={{ from: location }} replace />;
+    return <Navigate to="/" state={{ from: location }} replace />;
   }
 
   // Check role-based access
@@ -41,7 +41,7 @@ export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
   // Check permission-based access
   if (requiredPermission) {
     const permissions = Array.isArray(requiredPermission) ? requiredPermission : [requiredPermission];
-    
+
     if (requireAllPermissions) {
       if (!hasAllPermissions(permissions)) {
         return <Navigate to="/access-denied" replace />;

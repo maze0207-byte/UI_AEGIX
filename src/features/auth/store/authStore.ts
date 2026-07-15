@@ -93,11 +93,17 @@ export const useAuthStore = create<AuthStore>((set, get) => ({
           password: credentials.password,
         });
 
+        // Set userRole to 'administrator' for mock auth (full permissions)
+        const userRole: UserRole = 'administrator';
+        const userPermissions: Permission[] = [];
+
         set({
           isAuthenticated: true,
           accessToken: response.accessToken,
           refreshToken: response.refreshToken,
           user: response.user,
+          userRole,
+          userPermissions,
           loading: false,
           error: null,
         });
@@ -110,6 +116,8 @@ export const useAuthStore = create<AuthStore>((set, get) => ({
           accessToken: null,
           refreshToken: null,
           user: null,
+          userRole: null,
+          userPermissions: [],
         });
         throw authError;
       } finally {
@@ -183,11 +191,16 @@ export const useAuthStore = create<AuthStore>((set, get) => ({
 
       try {
         const user = storedUser ?? await authService.getCurrentUser();
+        // Set userRole to 'administrator' for mock auth (full permissions)
+        const userRole: UserRole = 'administrator';
+        const userPermissions: Permission[] = [];
         set({
           isAuthenticated: true,
           accessToken,
           refreshToken,
           user,
+          userRole,
+          userPermissions,
           loading: false,
           error: null,
         });

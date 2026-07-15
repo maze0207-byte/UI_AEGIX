@@ -10,6 +10,7 @@ import {
   Monitor,
   Settings,
   Shield,
+  Shield as ShieldSecurity,
 } from 'lucide-react';
 import { useAuth } from '../../features/auth';
 import { PERMISSIONS } from '../../features/auth/config/permissions';
@@ -18,7 +19,10 @@ import type { NavigationItem } from '../../features/auth/types/roles';
 const navigationItems: NavigationItem[] = [
   { id: 'dashboard', label: 'Dashboard', icon: 'LayoutDashboard', path: '/dashboard', requiredPermission: PERMISSIONS.DASHBOARD_VIEW },
   { id: 'assets', label: 'Assets', icon: 'Shield', path: '/assets', requiredPermission: PERMISSIONS.ASSETS_VIEW },
+  { id: 'security', label: 'Security', icon: 'ShieldSecurity', path: '/security', requiredPermission: PERMISSIONS.ASSETS_VIEW },
   { id: 'monitoring', label: 'Monitoring', icon: 'Monitor', path: '/monitoring', requiredPermission: PERMISSIONS.MONITORING_VIEW },
+  { id: 'orchestrator', label: 'Orchestrator', icon: 'Shield', path: '/orchestrator', requiredPermission: PERMISSIONS.ASSETS_VIEW },
+  { id: 'administration', label: 'Administration', icon: 'Shield', path: '/administration', requiredPermission: PERMISSIONS.USERS_MANAGE },
   { id: 'alerts', label: 'Alerts', icon: 'BellRing', path: '/alerts', requiredPermission: PERMISSIONS.ALERTS_VIEW },
   { id: 'threat-hunting', label: 'Threat Hunting', icon: 'AlertTriangle', path: '/threat-hunting', requiredPermission: PERMISSIONS.THREAT_HUNTING_VIEW },
   { id: 'compliance', label: 'Compliance', icon: 'Shield', path: '/compliance', requiredPermission: PERMISSIONS.COMPLIANCE_VIEW },
@@ -28,6 +32,7 @@ const navigationItems: NavigationItem[] = [
 const iconMap: Record<string, typeof LayoutDashboard> = {
   LayoutDashboard,
   Shield,
+  ShieldSecurity,
   Monitor,
   BellRing,
   AlertTriangle,
@@ -54,10 +59,10 @@ export const LeftNavigation: React.FC = () => {
 
   const currentPath = useMemo(() => location.pathname, [location.pathname]);
 
-  const handleLogout = async (): Promise<void> => {
-    await logout();
-    navigate('/login', { replace: true });
-  };
+const handleLogout = async (): Promise<void> => {
+     await logout();
+     navigate('/', { replace: true });
+   };
 
   // Filter navigation items based on user permissions
   // Dashboard is always visible for authenticated users

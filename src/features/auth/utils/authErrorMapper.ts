@@ -44,9 +44,9 @@ const ERROR_TYPE_MAP: Record<string, AuthErrorType> = {
 // User-friendly error messages
 const ERROR_MESSAGES: Record<AuthErrorType, { title: string; description: string; recoveryAction?: string }> = {
   INVALID_CREDENTIALS: {
-    title: 'Invalid credentials',
-    description: 'Please provide both a username and a password.',
-    recoveryAction: 'Try again with your workspace credentials.',
+    title: 'Invalid username or password',
+    description: 'The username or password you entered is incorrect.',
+    recoveryAction: 'Please try again with the correct credentials.',
   },
   INVALID_USERNAME: {
     title: 'Unknown account',
@@ -154,6 +154,9 @@ export const mapApiErrorToAuthErrorType = (error: ApiError | Error | null): Auth
   if (error instanceof Error) {
     const message = error.message.toLowerCase();
     
+    if (message.includes('invalid username') || message.includes('invalid password') || message.includes('invalid credentials')) {
+      return 'INVALID_CREDENTIALS';
+    }
     if (message.includes('network') || message.includes('fetch') || message.includes('connect')) {
       return 'NETWORK_ERROR';
     }

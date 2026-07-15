@@ -71,15 +71,16 @@ const mockRefreshToken = 'mock-refresh-token-' + Date.now();
 export const mockAuthService = {
   /**
    * Login with credentials (MOCK)
-   * Accepts any username/password for development
+   * Temporary frontend authentication for development
+   * Credentials: admin / admin123
    */
   login: async (credentials: LoginCredentials): Promise<AuthResponse> => {
     // Simulate network delay
     await new Promise((resolve) => setTimeout(resolve, 500));
 
-    // For development: accept any non-empty credentials
-    if (!credentials.username || !credentials.password) {
-      throw new Error('Username and password are required');
+    // Validate temporary credentials
+    if (credentials.username !== 'admin' || credentials.password !== 'admin123') {
+      throw new Error('Invalid username or password');
     }
 
     return {
