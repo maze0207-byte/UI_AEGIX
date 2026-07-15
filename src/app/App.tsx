@@ -8,6 +8,8 @@ import { AccessDeniedPage } from '../pages/AccessDeniedPage';
 import { PERMISSIONS } from '../features/auth/config/permissions';
 import { DashboardPage } from '../features/dashboard';
 import { AssetRoutes } from '../features/assets/routes/AssetRoutes';
+import { MonitoringRoutes } from '../features/monitoring/routes/MonitoringRoutes';
+import { OrchestratorRoutes } from '../features/orchestrator/routes/OrchestratorRoutes';
 
 export const App: React.FC = () => {
   return (
@@ -45,27 +47,13 @@ export const App: React.FC = () => {
         <Route path="dashboard" element={<DashboardPage />} />
         <Route path="assets/*" element={<AssetRoutes />} />
         <Route path="devices" element={<Navigate to="/assets/devices" replace />} />
+        <Route path="monitoring/*" element={<MonitoringRoutes />} />
+        <Route path="orchestrator/*" element={<OrchestratorRoutes />} />
         <Route
           path="security"
           element={
             <ProtectedRoute requiredPermission={PERMISSIONS.ASSETS_VIEW}>
               <div className="rounded-sm border border-neutral-800 bg-neutral-900 p-6 text-neutral-300">Security placeholder</div>
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="monitoring"
-          element={
-            <ProtectedRoute requiredPermission={PERMISSIONS.MONITORING_VIEW}>
-              <div className="rounded-sm border border-neutral-800 bg-neutral-900 p-6 text-neutral-300">Monitoring placeholder</div>
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="orchestrator"
-          element={
-            <ProtectedRoute requiredPermission={PERMISSIONS.ASSETS_VIEW}>
-              <div className="rounded-sm border border-neutral-800 bg-neutral-900 p-6 text-neutral-300">Orchestrator placeholder</div>
             </ProtectedRoute>
           }
         />
