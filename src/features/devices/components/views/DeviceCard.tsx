@@ -8,7 +8,7 @@ export const DeviceCard: React.FC<{ id: string }> = ({ id }) => {
 
   return (
     <div 
-      onClick={() => navigate(`/assets/${id}`)}
+      onClick={() => navigate(`/assets/devices/${id}`)}
       className="group flex cursor-pointer flex-col overflow-hidden rounded-md border border-neutral-800 bg-neutral-900 transition-all hover:border-neutral-700 hover:shadow-lg"
     >
       <div className="flex items-start justify-between border-b border-neutral-800/50 p-4">

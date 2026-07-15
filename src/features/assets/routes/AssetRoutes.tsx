@@ -1,11 +1,14 @@
-import { Routes, Route, Navigate } from 'react-router-dom';
-import { DevicesPage } from '../../devices/pages/DevicesPage';
+import { Routes, Route } from 'react-router-dom';
+import { AssetsOverviewPage } from '../pages/AssetsOverviewPage';
+import { EnterpriseDevicesPage } from '../pages/EnterpriseDevicesPage';
+import { DeviceDetailsPage } from '../pages/DeviceDetailsPage';
 
 export const AssetRoutes = () => {
   return (
     <Routes>
-      <Route index element={<Navigate to="devices" replace />} />
-      <Route path="devices" element={<DevicesPage />} />
+      <Route index element={<AssetsOverviewPage />} />
+      <Route path="devices" element={<EnterpriseDevicesPage />} />
+      <Route path="devices/:id" element={<DeviceDetailsPage />} />
     </Routes>
   );
 };

@@ -8,7 +8,7 @@ export const DeviceListItem: React.FC<{ id: string }> = ({ id }) => {
 
   return (
     <div 
-      onClick={() => navigate(`/assets/${id}`)}
+      onClick={() => navigate(`/assets/devices/${id}`)}
       className="group flex cursor-pointer items-center justify-between border-b border-neutral-800/50 bg-neutral-900 p-4 transition-all hover:bg-neutral-800/50 last:border-0"
     >
       <div className="flex items-center gap-6">
