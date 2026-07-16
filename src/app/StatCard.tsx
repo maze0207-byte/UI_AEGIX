@@ -3,7 +3,7 @@ import { cn } from '@/shared/utils/cn';
 
 interface StatCardProps {
   title: string;
-  value: string | number;
+  value: string | number | React.ReactNode;
   icon?: React.ReactNode;
   description?: React.ReactNode;
   onClick?: () => void;

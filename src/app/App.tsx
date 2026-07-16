@@ -10,6 +10,8 @@ import { DashboardPage } from '../features/dashboard';
 import { AssetRoutes } from '../features/assets/routes/AssetRoutes';
 import { MonitoringRoutes } from '../features/monitoring/routes/MonitoringRoutes';
 import { OrchestratorRoutes } from '../features/orchestrator/routes/OrchestratorRoutes';
+import { SecurityRoutes } from '../features/security/routes/SecurityRoutes';
+import { MapsRoutes } from '../features/maps/routes/MapsRoutes';
 
 export const App: React.FC = () => {
   return (
@@ -49,14 +51,8 @@ export const App: React.FC = () => {
         <Route path="devices" element={<Navigate to="/assets/devices" replace />} />
         <Route path="monitoring/*" element={<MonitoringRoutes />} />
         <Route path="orchestrator/*" element={<OrchestratorRoutes />} />
-        <Route
-          path="security"
-          element={
-            <ProtectedRoute requiredPermission={PERMISSIONS.ASSETS_VIEW}>
-              <div className="rounded-sm border border-neutral-800 bg-neutral-900 p-6 text-neutral-300">Security placeholder</div>
-            </ProtectedRoute>
-          }
-        />
+<Route path="security/*" element={<SecurityRoutes />} />
+        <Route path="maps/*" element={<MapsRoutes />} />
         <Route
           path="administration"
           element={
