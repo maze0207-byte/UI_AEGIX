@@ -12,6 +12,7 @@ import { MonitoringRoutes } from '../features/monitoring/routes/MonitoringRoutes
 import { OrchestratorRoutes } from '../features/orchestrator/routes/OrchestratorRoutes';
 import { SecurityRoutes } from '../features/security/routes/SecurityRoutes';
 import { MapsRoutes } from '../features/maps/routes/MapsRoutes';
+import { AdministrationRoutes } from '../features/administration/routes/AdministrationRoutes';
 
 export const App: React.FC = () => {
   return (
@@ -52,15 +53,8 @@ export const App: React.FC = () => {
         <Route path="monitoring/*" element={<MonitoringRoutes />} />
         <Route path="orchestrator/*" element={<OrchestratorRoutes />} />
 <Route path="security/*" element={<SecurityRoutes />} />
-        <Route path="maps/*" element={<MapsRoutes />} />
-        <Route
-          path="administration"
-          element={
-            <ProtectedRoute requiredPermission={PERMISSIONS.USERS_MANAGE}>
-              <div className="rounded-sm border border-neutral-800 bg-neutral-900 p-6 text-neutral-300">Administration placeholder</div>
-            </ProtectedRoute>
-          }
-        />
+<Route path="maps/*" element={<MapsRoutes />} />
+        <Route path="administration/*" element={<AdministrationRoutes />} />
         <Route
           path="alerts"
           element={
